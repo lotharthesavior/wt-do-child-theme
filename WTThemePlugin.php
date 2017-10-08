@@ -54,8 +54,8 @@ class WTThemePlugin
     public static function addFilters()
     {
 
-        add_filter('ocean_blog_meta_choices', ['WTThemePlugin', 'add_books_meta']);
-        add_filter('woocommerce_account_menu_items', ['WTThemePlugin', 'wt_do_remove_my_account_links']);
+        add_filter('ocean_blog_meta_choices', ['WTThemePlugin', 'addBooksMeta']);
+        add_filter('woocommerce_account_menu_items', ['WTThemePlugin', 'wtDoRemoveMyAccountLinks']);
 
     }
 
@@ -65,7 +65,7 @@ class WTThemePlugin
     public static function addActions()
     {
 
-        add_action('wp_enqueue_scripts', ['WTThemePlugin', 'oceanwp_child_enqueue_parent_style']);
+        add_action('wp_enqueue_scripts', ['WTThemePlugin', 'oceanwpChildEnqueueParentStyle']);
         add_action('init', ['WTThemePlugin', 'registerWtMenuForExtraLinks']);
         add_action('init', ['WTThemePlugin', 'addWtMenuForExtraLinksEndpoint']);
 
@@ -139,7 +139,7 @@ class WTThemePlugin
      * @internal hook: wp_enqueue_scripts
      * @link http://codex.wordpress.org/Child_Themes
      */
-    public static function oceanwp_child_enqueue_parent_style()
+    public static function oceanwpChildEnqueueParentStyle()
     {
 
         // Dynamically get version number of the parent stylesheet (lets browsers re-cache your stylesheet when you update your theme)
@@ -160,7 +160,7 @@ class WTThemePlugin
      * @param $return
      * @return mixed
      */
-    public static function add_books_meta($return)
+    public static function addBooksMeta($return)
     {
 
         // Add your meta name
@@ -179,7 +179,7 @@ class WTThemePlugin
      * @param $menu_links
      * @return mixed
      */
-    public static function wt_do_remove_my_account_links($menu_links)
+    public static function wtDoRemoveMyAccountLinks($menu_links)
     {
 //        Default items ---
         unset($menu_links['edit-address']); // Addresses
