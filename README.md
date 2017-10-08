@@ -42,3 +42,5 @@ These items will be available in the Theme's menu on the WP-Admin. Any menu can 
 
 
 #### Shortcodes
+
+This is an ongoing work...
