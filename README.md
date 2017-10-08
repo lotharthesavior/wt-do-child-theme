@@ -5,6 +5,8 @@ WT OceanWP Child Theme
 
 WT Child Theme for the OceanWP WordPress theme. This theme adds useful functionalities for custom taxonomies to be displayed.
 
+Obs.: "vendors" and "node_modules" are included so this can be added as an usual theme for Wordpress.
+
 ### Usage
 By creating your own taxonomies, simply select the ones you want to see in after the title of your blog post or page.
 
