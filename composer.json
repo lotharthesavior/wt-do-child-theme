@@ -1,0 +1,19 @@
+{
+  "name": "savio/oceanwp-child-wt",
+  "description": "Words Tree OceanWP Child Theme",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Savio Resende",
+      "email": "savio@savioresende.com.br"
+    }
+  ],
+  "require": {
+
+  },
+  "autoload": {
+    "psr-4": {
+      "Helpers\\": "Helpers/"
+    }
+  }
+}

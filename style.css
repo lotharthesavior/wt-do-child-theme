@@ -1,0 +1,31 @@
+/*
+Theme Name: Words Tree OceanWP Child
+Theme URI: https://wordstree.com/
+Description: WordsTree OceanWP WordPress child theme.
+Author: Savio Resende
+Author URI: https://savioresende.com.br/
+Template: oceanwp
+Version: beta
+*/
+
+/* Parent stylesheet should be loaded from functions.php not using @import */
+
+/* --- Layout --- */
+#site-header-inner,
+.site-content,
+.page-header .container {
+    max-width: 970px !important;
+}
+
+.site-content {
+    margin: 0 auto;
+}
+
+/* --- Blog Single --- */
+.icon-term-post-single {
+    font-size: 15px;
+}
+
+.site-content p{
+    font-size: 22px;
+}

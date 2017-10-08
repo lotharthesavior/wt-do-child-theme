@@ -1,0 +1,14 @@
+{
+  "name": "oceanwp-child-wt",
+  "version": "1.0.0",
+  "description": "Words Tree child Theme for OceanWP",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Savio Resende",
+  "license": "ISC",
+  "dependencies": {
+    "quill": "^1.3.2"
+  }
+}
