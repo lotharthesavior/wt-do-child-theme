@@ -12,7 +12,17 @@ By creating your own taxonomies, simply select the ones you want to see in after
 
 #### Core features
 
-##### Adding menu to the theme
+##### Adding a new item to Woocommerce My Account Menu
+
+To add a new item to Woocommerce My Account Menu, you just have to add a page to any menu, than, mark that menu to be displayed at the "Words Tree My Account Menu" location, which is a custom place created but this theme.
+
+![Adding item to menu][image_add_page.png]
+
+**After add another page to the menu, it is necessary to visit the page Settings/Permalinks at the WP Admin Area.**
+
+##### Adding new menu location to the theme
+
+This is useful for developers who want to add more possible menus to pages.
 
 At the file WTThemePlugin.php, customize this part of the code adding more items to the array, following the first element example:
 
@@ -28,11 +38,7 @@ public static $menu_items_to_be_registered = [
 ];
 ```
 
-These items will be available in the Theme's menu on the WP-Admin. Any menu can the attached to this location (e.g. "Words Tree My Account Menu").
-
-**After add another page to the menu, it is necessary to visit the page Settings/Permalinks at the WP Admin Area.**
+These items will be available in the Theme's menu on the WP-Admin. Any menu can the attached to this location (e.g. the default menu, which is used by the theme to increment the Woocommerce My Account menu items, is "Words Tree My Account Menu").
 
 
 #### Shortcodes
-
- 
