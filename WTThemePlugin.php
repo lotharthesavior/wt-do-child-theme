@@ -42,10 +42,8 @@ class WTThemePlugin
      */
     public static function handleRegistration()
     {
-
         register_activation_hook(__FILE__, ['WTThemePlugin', 'install']);
         register_deactivation_hook(__FILE__, ['WTThemePlugin', 'uninstall']);
-
     }
 
     /**
@@ -53,10 +51,8 @@ class WTThemePlugin
      */
     public static function addFilters()
     {
-
         add_filter('ocean_blog_meta_choices', ['WTThemePlugin', 'addBooksMeta']);
         add_filter('woocommerce_account_menu_items', ['WTThemePlugin', 'wtDoRemoveMyAccountLinks']);
-
     }
 
     /**
@@ -64,11 +60,9 @@ class WTThemePlugin
      */
     public static function addActions()
     {
-
         add_action('wp_enqueue_scripts', ['WTThemePlugin', 'oceanwpChildEnqueueParentStyle']);
         add_action('init', ['WTThemePlugin', 'registerWtMenuForExtraLinks']);
         add_action('init', ['WTThemePlugin', 'addWtMenuForExtraLinksEndpoint']);
-
     }
 
     /**
@@ -80,11 +74,9 @@ class WTThemePlugin
      */
     public static function registerWtMenuForExtraLinks()
     {
-
         foreach (self::$menu_items_to_be_registered as $menu_item) {
             register_nav_menu($menu_item['location'], __($menu_item['description'][0], $menu_item['description'][1]));
         }
-
     }
 
     /**
@@ -96,7 +88,6 @@ class WTThemePlugin
      */
     public static function addWtMenuForExtraLinksEndpoint()
     {
-
         $menu_items = wp_get_nav_menu_items("My Account extra items");
         foreach ($menu_items as $key => $menu_item) {
             $menu_item_endpoint = \Helpers\WtHelpers::slugFromString($menu_item->title);
@@ -107,7 +98,6 @@ class WTThemePlugin
                 WTThemePlugin::addContentToEndpoint($menu_item_endpoint);
             });
         }
-
     }
 
     /**
@@ -128,7 +118,7 @@ class WTThemePlugin
         $my_posts = get_posts($args);
 
         if( count($my_posts) > 0 ){
-            echo $my_posts[0]->post_content;
+            echo do_shortcode($my_posts[0]->post_content);
         }
     }
 
@@ -141,14 +131,12 @@ class WTThemePlugin
      */
     public static function oceanwpChildEnqueueParentStyle()
     {
-
         // Dynamically get version number of the parent stylesheet (lets browsers re-cache your stylesheet when you update your theme)
         $theme = wp_get_theme('OceanWP');
         $version = $theme->get('Version');
 
         // Load the stylesheet
         wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css', array('oceanwp-style'), $version);
-
     }
 
     /**
@@ -162,13 +150,11 @@ class WTThemePlugin
      */
     public static function addBooksMeta($return)
     {
-
         // Add your meta name
         $return['books'] = esc_html__('Books', 'oceanwp');
 
         // Return
         return $return;
-
     }
 
     /**
@@ -195,10 +181,7 @@ class WTThemePlugin
             $menu_links = self::addMenuItemToMyAccount($menu_item, $menu_links);
         }
 
-//        wc_print_r($menu_links);exit;
-
         return $menu_links;
-
     }
 
     /**

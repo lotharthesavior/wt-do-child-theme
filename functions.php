@@ -21,3 +21,5 @@ require __DIR__ . '/vendor/autoload.php';
 \WTThemePlugin::addFilters();
 \WTThemePlugin::handleRegistration();
 \WTThemePlugin::addActions();
+
+\Features\WTThemeShortcodes::addWriterShortcode();
