@@ -40,7 +40,8 @@ class WTThemePlugin
     /**
      *
      */
-    public static function handleRegistration() {
+    public static function handleRegistration()
+    {
 
         register_activation_hook(__FILE__, ['WTThemePlugin', 'install']);
         register_deactivation_hook(__FILE__, ['WTThemePlugin', 'uninstall']);
@@ -50,7 +51,8 @@ class WTThemePlugin
     /**
      * Register Filters
      */
-    public static function addFilters() {
+    public static function addFilters()
+    {
 
         add_filter('ocean_blog_meta_choices', ['WTThemePlugin', 'add_books_meta']);
         add_filter('woocommerce_account_menu_items', ['WTThemePlugin', 'wt_do_remove_my_account_links']);
@@ -60,10 +62,12 @@ class WTThemePlugin
     /**
      * Register Actions
      */
-    public static function addActions() {
+    public static function addActions()
+    {
 
         add_action('wp_enqueue_scripts', ['WTThemePlugin', 'oceanwp_child_enqueue_parent_style']);
-        add_action( 'init', ['WTThemePlugin', 'registerWtMenuForExtraLinks'] );
+        add_action('init', ['WTThemePlugin', 'registerWtMenuForExtraLinks']);
+        add_action('init', ['WTThemePlugin', 'addWtMenuForExtraLinksEndpoint']);
 
     }
 
@@ -74,12 +78,58 @@ class WTThemePlugin
      * @internal hook: init
      * @return void
      */
-    public static function registerWtMenuForExtraLinks() {
+    public static function registerWtMenuForExtraLinks()
+    {
 
-        foreach (self::$menu_items_to_be_registered as $menu_item){
-            register_nav_menu( $menu_item['location'], __( $menu_item['description'][0], $menu_item['description'][1] ) );
+        foreach (self::$menu_items_to_be_registered as $menu_item) {
+            register_nav_menu($menu_item['location'], __($menu_item['description'][0], $menu_item['description'][1]));
         }
 
+    }
+
+    /**
+     * Add Endpoint to registered pages on woocommerce myaccount menu
+     *
+     * @internal registered with: add_action
+     * @internal hook: init
+     * @return void
+     */
+    public static function addWtMenuForExtraLinksEndpoint()
+    {
+
+        $menu_items = wp_get_nav_menu_items("My Account extra items");
+        foreach ($menu_items as $key => $menu_item) {
+            $menu_item_endpoint = \Helpers\WtHelpers::slugFromString($menu_item->title);
+
+            add_rewrite_endpoint($menu_item_endpoint, EP_PAGES);
+
+            add_action('woocommerce_account_' . $menu_item_endpoint . '_endpoint', function () use ($menu_item_endpoint) {
+                WTThemePlugin::addContentToEndpoint($menu_item_endpoint);
+            });
+        }
+
+    }
+
+    /**
+     * Populate the content of custom page. This is used to populate the
+     * page created for Woocommerce MyAccount.
+     *
+     * @param string $menu_item_endpoint
+     * @return void
+     */
+    public static function addContentToEndpoint(string $menu_item_endpoint)
+    {
+        $args = array(
+            'name'        => $menu_item_endpoint,
+            'post_type'   => 'page',
+            'post_status' => 'publish',
+            'numberposts' => 1
+        );
+        $my_posts = get_posts($args);
+
+        if( count($my_posts) > 0 ){
+            echo $my_posts[0]->post_content;
+        }
     }
 
     /**
@@ -95,6 +145,7 @@ class WTThemePlugin
         // Dynamically get version number of the parent stylesheet (lets browsers re-cache your stylesheet when you update your theme)
         $theme = wp_get_theme('OceanWP');
         $version = $theme->get('Version');
+
         // Load the stylesheet
         wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css', array('oceanwp-style'), $version);
 
@@ -139,9 +190,9 @@ class WTThemePlugin
 //        unset( $menu_links['edit-account'] ); // Account details
 //        unset( $menu_links['customer-logout'] ); // Logout
 
-        $menu_items = wp_get_nav_menu_items( "My Account extra items" );
-        foreach ($menu_items as $key => $menu_item){
-            $menu_links = self::addMenuItemToMyAccount( $menu_item, $menu_links );
+        $menu_items = wp_get_nav_menu_items("My Account extra items");
+        foreach ($menu_items as $key => $menu_item) {
+            $menu_links = self::addMenuItemToMyAccount($menu_item, $menu_links);
         }
 
 //        wc_print_r($menu_links);exit;
@@ -157,7 +208,7 @@ class WTThemePlugin
      * @param WP_Post $menu_item
      * @param array $menu_links
      */
-    public static function addMenuItemToMyAccount( WP_Post $menu_item, array $menu_links )
+    public static function addMenuItemToMyAccount(WP_Post $menu_item, array $menu_links)
     {
         $extra_page = [\Helpers\WtHelpers::slugFromString($menu_item->title) => $menu_item->title];
 
