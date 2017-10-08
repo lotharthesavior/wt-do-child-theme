@@ -16,7 +16,7 @@ By creating your own taxonomies, simply select the ones you want to see in after
 
 To add a new item to Woocommerce My Account Menu, you just have to add a page to any menu, than, mark that menu to be displayed at the "Words Tree My Account Menu" location, which is a custom place created but this theme.
 
-![Adding item to menu][image_add_page.png]
+![Adding item to menu](/image_add_page.png)
 
 **After add another page to the menu, it is necessary to visit the page Settings/Permalinks at the WP Admin Area.**
 
