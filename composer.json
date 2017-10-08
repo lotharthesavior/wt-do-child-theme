@@ -13,7 +13,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Helpers\\": "Helpers/"
+      "Helpers\\": "Helpers/",
+      "Features\\": "Features/"
     }
   }
 }
