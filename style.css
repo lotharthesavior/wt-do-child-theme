@@ -10,7 +10,14 @@ Version: beta
 
 /* Parent stylesheet should be loaded from functions.php not using @import */
 
+/** --- general --- */
+
+.cleaner {
+    clear: both;
+}
+
 /* --- Layout --- */
+
 #site-header-inner,
 .site-content,
 .page-header .container {
@@ -22,10 +29,110 @@ Version: beta
 }
 
 /* --- Blog Single --- */
+
 .icon-term-post-single {
     font-size: 15px;
 }
 
 .site-content p{
     font-size: 22px;
+}
+
+/* --- editor --- */
+
+.woocommerce button.button {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+div.mce-toolbar-grp,
+.quicktags-toolbar{
+    border-bottom: none !important;
+    background: #f5f5f5 !important;
+}
+
+.wp-editor-container {
+    border: none !important;
+    border-top: 1px solid #eaeaea !important;
+}
+
+.wp-switch-editor {
+    border-radius: 1px !important;
+}
+
+/* --- breacrumb --- */
+
+.wt-books-breadcrumb ul {
+    list-style: none;
+}
+
+.wt-books-breadcrumb ul li {
+    float: left;
+}
+
+.wt-books-breadcrumb ul li:not(:first-child):before {
+    content: ">";
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* --- summary --- */
+
+.flex-container {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.wt-shortcode-header {
+    height: 62px;
+    line-height: 62px;
+}
+
+.wt-shortcode-header h2 {
+    float: left;
+    max-width: 80%;
+}
+
+.wt-shortcode-header .wt-header-shortcode-btn {
+    float: right;
+
+}
+
+/* --- item --- */
+
+.flex-item {
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 3 1 30%;
+    -ms-flex: 3 1 30%;
+    flex: 3 1 30%;
+    -webkit-align-self: flex-start;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+    margin: 5px;
+}
+
+.wt-summary-item-options .wt-summary-item-options-link:not(:first-child) {
+    margin-left: 10px;
+}
+
+.blog-entry-summary {
+    margin-bottom: 10px !important;
 }

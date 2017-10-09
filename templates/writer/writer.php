@@ -5,46 +5,24 @@
  * @author Savio Resende <savio@savioresende.com.br>
  */
 
+global $chapter;
 
-// code to be used to receive the request
-//$args = array(
-//    'post_type' => 'my_custom_post',
-//    /*other default parameters you want to set*/
-//);
-//$post_id = wp_insert_post($args);
-//if(!is_wp_error($post_id)){
-//    //the post is valid
-//}else{
-//    //there was an error in the post insertion,
-//    echo $post_id->get_error_message();
-//}
+$this->returnTemplate('breadcrumb_template');
 
 ?>
 
-<style>
-    .woocommerce button.button {
-        padding-top: 0px !important;
-        padding-bottom: 0px !important;
-    }
+<div class="wt-shortcode-header">
+    <h2><?php echo $chapter->post_title; ?></h2>
 
-    div.mce-toolbar-grp,
-    .quicktags-toolbar{
-        border-bottom: none !important;
-        background: #f5f5f5 !important;
-    }
+    <a class="wt-header-shortcode-btn button" href="">Save</a>
 
-    .wp-editor-container {
-        border: none !important;
-        border-top: 1px solid #eaeaea !important;
-    }
+    <div class="cleaner"></div>
+</div>
 
-    .wp-switch-editor {
-        border-radius: 1px !important;
-    }
-</style>
+<div class="cleaner"></div>
 
 <?php
 
-wp_editor( "test content", "wt-editor-content");
+wp_editor( $chapter->post_content, "wt-editor-content");
 
 ?>

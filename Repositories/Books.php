@@ -54,28 +54,67 @@ class Books implements Interfaces\RepositoryInterface
     /**
      * Search elements based in an array args (dictionary like)
      *
+     * This method will choose between taxonomy or posts depending ont
+     * he arguments.
+     *
      * @param array $args
      * @return CollectionInterface
      */
-    public function search(array $args): CollectionInterface
+    public function search(array $args) : CollectionInterface
     {
-        $book_collection = new Collections\BookCollection();
+        if( isset($args['taxonomy']) )
+            return $this->searchTaxonomies( $args );
+
+        return $this->searchPosts( $args );
+    }
+
+    /**
+     * Execute the search for posts
+     *
+     * @param array $args
+     * @return CollectionInterface
+     */
+    private function searchPosts( array $args ) : CollectionInterface
+    {
+        $chapter_collection = new Collections\ChapterCollection();
 
         $query = new \WP_Query($args);
 
         if (!$query->have_posts()) {
 
-            $book_collection->loadTraversable([]);
+            $chapter_collection->loadTraversable([]);
 
         } else {
 
             $posts_result = $query->get_posts();
-            $book_collection->loadTraversable($posts_result);
+            $chapter_collection->loadTraversable($posts_result);
+
+        }
+
+        return $chapter_collection;
+    }
+
+    /**
+     * @param array $args
+     * @return CollectionInterface
+     */
+    private function searchTaxonomies( array $args ) : CollectionInterface
+    {
+        $book_collection = new Collections\BookCollection();
+
+        $terms = get_terms($args);
+
+        if (count($terms) > 0) {
+
+            $book_collection->loadTraversable($terms);
+
+        } else {
+
+            $book_collection->loadTraversable([]);
 
         }
 
         return $book_collection;
-
     }
 
 }

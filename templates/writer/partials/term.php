@@ -8,21 +8,19 @@
  * @internal This file is to always run inside the WTWriterShortcode context
  */
 
-global $post,
+global $term,
        $wp;
 
-$this_chapter_url = home_url(add_query_arg([
-    'action' => 'edit-chapter',
-    'chapter' => $post->id,
+$this_book_url = home_url(add_query_arg([
+    'action' => 'search-chapters',
+    'book' => $term->term_id
 ],$wp->request));
 
 ?>
 
-<div class="flex-container">
-
 <article
-    id="post-<?php echo $post->id; ?>"
-    class="blog-entry clr isotope-entry col span_1_of_4 grid-entry col-3 post-<?php echo $post->id; ?> post type-post status-publish format-standard has-post-thumbnail hentry category-lifestyle tag-lifestyle tag-woman entry has-media flex-item">
+    id="post-<?php echo $term->term_id; ?>"
+    class="blog-entry clr isotope-entry col span_1_of_4 grid-entry col-3 post-<?php echo $term->term_id; ?> post type-post status-publish format-standard has-post-thumbnail hentry category-lifestyle tag-lifestyle tag-woman entry has-media flex-item">
 
     <div class="blog-entry-inner clr">
 
@@ -40,7 +38,7 @@ $this_chapter_url = home_url(add_query_arg([
 
         <header class="blog-entry-header clr">
             <h2 class="blog-entry-title entry-title">
-                <a href="<?php echo $this_chapter_url; ?>" title="Dapibus diam sed nisi nulla quis sem" rel="bookmark"><?php echo $post->post_title; ?></a>
+                <a href="<?php echo $this_book_url; ?>" title="Dapibus diam sed nisi nulla quis sem" rel="bookmark"><?php echo $term->name; ?></a>
             </h2><!-- .blog-entry-title -->
         </header><!-- .blog-entry-header -->
 
@@ -54,11 +52,11 @@ $this_chapter_url = home_url(add_query_arg([
         </ul>
         */ ?>
 
-        <div class="blog-entry-summary clr" itemprop="text">
+        <?php /*<div class="blog-entry-summary clr" itemprop="text">
 
-            <?php echo substr(strip_tags($post->post_content), 0, 150) . ( (strlen(strip_tags($post->post_content)) > 150)?"...":"" ); ?>
+            <?php echo substr(strip_tags($term->post_content), 0, 150) . ( (strlen(strip_tags($term->post_content)) > 150)?"...":"" ); ?>
 
-        </div><!-- .blog-entry-summary -->
+        </div><!-- .blog-entry-summary -->*/ ?>
 
         <?php /*<div class="blog-entry-readmore clr">
             <a href="http://local.wordpress.dev/2016/08/01/dapibus-diam-sed-nisi-nulla-quis-sem/" title="Continue Reading">Continue Reading<i class="fa fa-angle-right"></i></a>
@@ -66,7 +64,7 @@ $this_chapter_url = home_url(add_query_arg([
 
         <footer class="wt-summary-item-options">
 
-            <a class="wt-summary-item-options-link" href="<?php echo $this_chapter_url; ?>"><span class="dashicons dashicons-edit"></span></a>
+            <a class="wt-summary-item-options-link" href="#"><span class="dashicons dashicons-edit"></span></a>
 
             <a class="wt-summary-item-options-link" href="#"><span class="dashicons dashicons-trash"></span></a>
 

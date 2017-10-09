@@ -24,10 +24,9 @@ interface WTShortcodeInterface
      * Run the procedure according to the Rule on the self::start();
      *
      * @param string $action
-     * @param array $args
      * @return void
      */
-    public function doAction( string $action, array $args = [] );
+    public function doAction( string $action);
 
     /**
      * Require the template
