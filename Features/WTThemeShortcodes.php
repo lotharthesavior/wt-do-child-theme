@@ -1,7 +1,12 @@
 <?php
 
 /**
+ *
  * WT Theme Shortcodes
+ *
+ * This Class works as a router for Shortcodes.
+ *
+ * Each Shortcode has it's own workflow.
  *
  * @author Savio Resende <savio@savioresende.com.br>
  *
@@ -16,11 +21,8 @@ class WTThemeShortcodes
 
         add_shortcode('wt-writer', function(){
 
-//            if ( ! empty( $_GET ) ) {
-//                var_dump($_GET);exit;
-//            }
-
-            require __DIR__ . "/../templates/writer.php";
+            $wt_writer_shortcode = new Shortcodes\WTWriterShortcode();
+            $wt_writer_shortcode->run();
 
         });
 

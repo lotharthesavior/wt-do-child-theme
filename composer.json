@@ -14,7 +14,8 @@
   "autoload": {
     "psr-4": {
       "Helpers\\": "Helpers/",
-      "Features\\": "Features/"
+      "Features\\": "Features/",
+      "Repositories\\": "Repositories/"
     }
   }
 }

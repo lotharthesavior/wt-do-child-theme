@@ -7,8 +7,28 @@ WT Child Theme for the OceanWP WordPress theme. This theme adds useful functiona
 
 Obs.: "vendors" and "node_modules" are included so this can be added as an usual theme for Wordpress.
 
+### Dependencies
+
+- Woocommerce Plugin
+- OceanWP Theme
+
+### Recommended
+
+- Ocean Demo Import Plugin
+- Ocean Extra Plugin
+
 ### Usage
+
 By creating your own taxonomies, simply select the ones you want to see in after the title of your blog post or page.
+
+One good implementation of this template would be built following this direction:
+
+- apply the OceanWP Sub Theme,
+- install the recommended plugins,
+- install the OceanWP demo called "Blogger",
+- go to "Customize" the theme,
+- At the "Static Front Page", apply a home page with the Template "Landing Page",
+-   
 
 #### Core features
 
@@ -43,4 +63,25 @@ These items will be available in the Theme's menu on the WP-Admin. Any menu can 
 
 #### Shortcodes
 
-This is an ongoing work...
+##### Class Interface:
+
+- **run** small router for this shortcode
+- **doAction** execute the action decided by the run method
+- **returnTemplate** return template
+
+##### Expected API:
+
+###### Stateless Action
+
+**Request** GET {slug}?action={action}&{paramX}={valueX}
+
+###### Stateful Action
+
+**Request** POST {slug}?action={action}
+
+**Body** JOSN {field1:value1,field2:value2}
+
+
+#### Globals
+
+**$wt_theme_dir** theme directory for files inclusion.

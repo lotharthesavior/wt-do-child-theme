@@ -25,7 +25,10 @@ class WTThemePlugin
      */
     public static function install()
     {
-
+        // TODO: check OceanWP installation
+        // TODO: check Woocommerce installation
+        // TODO: check other dependencies installation
+        // TODO: create book taxonomy
     }
 
     /**
