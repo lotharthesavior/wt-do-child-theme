@@ -14,12 +14,14 @@
  *
  */
 
-require __DIR__ . '/WTThemePlugin.php';
+$wt_theme_dir = plugin_dir_path( __FILE__ );
 
-require __DIR__ . '/vendor/autoload.php';
+require $wt_theme_dir . 'WTThemePlugin.php';
 
-\WTThemePlugin::addFilters();
+require $wt_theme_dir . 'vendor/autoload.php';
+
 \WTThemePlugin::handleRegistration();
+\WTThemePlugin::addFilters();
 \WTThemePlugin::addActions();
 
 \Features\WTThemeShortcodes::addWriterShortcode();
