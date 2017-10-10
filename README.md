@@ -5,6 +5,8 @@ WT OceanWP Child Theme
 
 WT Child Theme for the OceanWP WordPress theme. This theme adds useful functionalities for custom taxonomies to be displayed.
 
+These functionalities are built abstracted, and have the possibility to access different repositories, not being necessarrily the Wordpress main database. For this, the Repositories are build for an common Interface.
+
 Obs.: "vendors" and "node_modules" are included so this can be added as an usual theme for Wordpress.
 
 ### Dependencies
@@ -79,9 +81,19 @@ These items will be available in the Theme's menu on the WP-Admin. Any menu can 
 
 **Request** POST {slug}?action={action}
 
-**Body** JOSN {field1:value1,field2:value2}
+**Body** JSON {field1:value1,field2:value2}
 
 
 #### Globals
 
 **$wt_theme_dir** theme directory for files inclusion.
+
+**$terms** terms loaded
+
+**$posts** posts loaded
+
+**$breadcrumb** breadcrumb loaded
+
+**$chapter** chapter loaded
+
+**$book** book loaded

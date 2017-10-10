@@ -11,6 +11,10 @@ class ComposerStaticInit61ddbb2c01ffa2b9bec09381cee8da2c
         array (
             'Repositories\\' => 13,
         ),
+        'P' => 
+        array (
+            'Plasticbrain\\FlashMessages\\' => 27,
+        ),
         'H' => 
         array (
             'Helpers\\' => 8,
@@ -25,6 +29,10 @@ class ComposerStaticInit61ddbb2c01ffa2b9bec09381cee8da2c
         'Repositories\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Repositories',
+        ),
+        'Plasticbrain\\FlashMessages\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/lotharthesavior/php-flash-messages/src',
         ),
         'Helpers\\' => 
         array (

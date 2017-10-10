@@ -4,12 +4,12 @@
  * Repository for Books entities
  *
  * @author Savio Resende <savio@savioresende.com.br>
- *
+ * 
  */
 
 namespace Repositories\Entities;
 
-class Book implements \Repositories\Interfaces\EntityInterface
+class Chapter implements \Repositories\Interfaces\EntityInterface
 {
     /**
      * @var int (post id)
@@ -90,6 +90,11 @@ class Book implements \Repositories\Interfaces\EntityInterface
      * @var int
      */
     protected $comment_count = 0;
+
+    /**
+     * @var array
+     */
+    protected $book_terms = [];
 
     /**
      *

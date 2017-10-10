@@ -11,9 +11,18 @@
 global $post,
        $wp;
 
+$book_id = sanitize_text_field($this->get_request['book']);
+
 $this_chapter_url = home_url(add_query_arg([
     'action' => 'edit-chapter',
     'chapter' => $post->id,
+    'book' => $book_id
+],$wp->request));
+
+$this_chapter_delete_url = home_url(add_query_arg([
+    'action' => 'delete-chapter',
+    'chapter' => $post->id,
+    'book' => $book_id
 ],$wp->request));
 
 ?>
@@ -26,33 +35,11 @@ $this_chapter_url = home_url(add_query_arg([
 
     <div class="blog-entry-inner clr">
 
-        <?php /*
-        <div class="thumbnail">
-
-            <a href="http://local.wordpress.dev/2016/08/01/dapibus-diam-sed-nisi-nulla-quis-sem/" class="thumbnail-link no-lightbox">
-
-                <img src="http://local.wordpress.dev/wp-content/uploads/2016/08/img_1035489.jpg" class="attachment-large size-large wp-post-image" alt="Dapibus diam sed nisi nulla quis sem" itemprop="image" srcset="http://local.wordpress.dev/wp-content/uploads/2016/08/img_1035489.jpg 848w, http://local.wordpress.dev/wp-content/uploads/2016/08/img_1035489-300x200.jpg 300w, http://local.wordpress.dev/wp-content/uploads/2016/08/img_1035489-768x513.jpg 768w" sizes="(max-width: 848px) 100vw, 848px" width="848" height="566">
-
-            </a>
-
-        </div><!-- .thumbnail -->
-        */ ?>
-
         <header class="blog-entry-header clr">
             <h2 class="blog-entry-title entry-title">
                 <a href="<?php echo $this_chapter_url; ?>" title="Dapibus diam sed nisi nulla quis sem" rel="bookmark"><?php echo $post->post_title; ?></a>
             </h2><!-- .blog-entry-title -->
         </header><!-- .blog-entry-header -->
-
-        <?php /*
-        <ul class="meta clr">
-
-            <li class="meta-cat"><i class="icon-folder"></i><a href="http://local.wordpress.dev/category/lifestyle/" rel="category tag">Lifestyle</a></li>
-
-            <li class="meta-comments"><i class="icon-bubble"></i><a href="http://local.wordpress.dev/2016/08/01/dapibus-diam-sed-nisi-nulla-quis-sem/#comments" class="comments-link">2 Comments</a></li>
-
-        </ul>
-        */ ?>
 
         <div class="blog-entry-summary clr" itemprop="text">
 
@@ -60,15 +47,13 @@ $this_chapter_url = home_url(add_query_arg([
 
         </div><!-- .blog-entry-summary -->
 
-        <?php /*<div class="blog-entry-readmore clr">
-            <a href="http://local.wordpress.dev/2016/08/01/dapibus-diam-sed-nisi-nulla-quis-sem/" title="Continue Reading">Continue Reading<i class="fa fa-angle-right"></i></a>
-        </div><!-- .blog-entry-readmore -->*/ ?>
-
         <footer class="wt-summary-item-options">
 
             <a class="wt-summary-item-options-link" href="<?php echo $this_chapter_url; ?>"><span class="dashicons dashicons-edit"></span></a>
 
-            <a class="wt-summary-item-options-link" href="#"><span class="dashicons dashicons-trash"></span></a>
+            <a class="wt-summary-item-options-link"
+               onclick="javascript:if(confirm('Do you really want to delete this Item?')){return true;}else{return false;}"
+               href="<?php echo $this_chapter_delete_url; ?>"><span class="dashicons dashicons-trash"></span></a>
 
         </footer>
 

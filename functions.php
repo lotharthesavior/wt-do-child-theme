@@ -14,6 +14,8 @@
  *
  */
 
+if (!session_id()) @session_start();
+
 $wt_theme_dir = plugin_dir_path( __FILE__ );
 
 require $wt_theme_dir . 'WTThemePlugin.php';

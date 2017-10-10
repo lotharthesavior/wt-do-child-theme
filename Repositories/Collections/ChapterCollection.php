@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: savioresende
- * Date: 2017-10-08
- * Time: 4:43 PM
+ * Chapter Collection Repository
+ *
+ * @author Savio Resende <savio@savioresende,c
  */
 
 namespace Repositories\Collections;
@@ -54,7 +53,10 @@ class ChapterCollection implements \Repositories\Interfaces\CollectionInterface,
 
     public function offsetGet($offset)
     {
-        return $this->collection[$offset];
+        if( isset($this->collection[$offset]) )
+            return $this->collection[$offset];
+
+        return false;
     }
 
     public function offsetSet($offset, $value)
@@ -79,13 +81,13 @@ class ChapterCollection implements \Repositories\Interfaces\CollectionInterface,
         $traversable = array_map(function ($item) {
             $item_array = (array) $item;
 
-            $book_entity = new \Repositories\Entities\Book();
+            $chapter_entity = new \Repositories\Entities\Chapter();
 
             foreach ($item_array as $key => $item_attribute){
-                $book_entity->{strtolower($key)} = $item_attribute;
+                $chapter_entity->{strtolower($key)} = $item_attribute;
             }
 
-            return $book_entity;
+            return $chapter_entity;
         }, $traversable);
 
         $this->collection = $traversable;

@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Repositories\\' => array($baseDir . '/Repositories'),
+    'Plasticbrain\\FlashMessages\\' => array($vendorDir . '/lotharthesavior/php-flash-messages/src'),
     'Helpers\\' => array($baseDir . '/Helpers'),
     'Features\\' => array($baseDir . '/Features'),
 );

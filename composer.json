@@ -9,7 +9,7 @@
     }
   ],
   "require": {
-
+    "lotharthesavior/php-flash-messages": "^1.0"
   },
   "autoload": {
     "psr-4": {
@@ -17,5 +17,11 @@
       "Features\\": "Features/",
       "Repositories\\": "Repositories/"
     }
-  }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/lotharthesavior/PhpFlashMessages"
+    }
+  ]
 }

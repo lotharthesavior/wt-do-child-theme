@@ -17,15 +17,13 @@ namespace Features;
 class WTThemeShortcodes
 {
 
-    public static function addWriterShortcode(){
-
-        add_shortcode('wt-writer', function(){
-
+    public static function addWriterShortcode()
+    {
+        add_shortcode('wt-writer', function () {
             $wt_writer_shortcode = new Shortcodes\WTWriterShortcode();
             $wt_writer_shortcode->run();
 
         });
-
     }
 
 }
