@@ -88,8 +88,6 @@ class Books implements Interfaces\RepositoryInterface
 
             $posts_result = $query->get_posts();
 
-            $posts_result = $this->loadTerms($posts_result);
-
             $chapter_collection->loadTraversable($posts_result);
 
         }
@@ -128,35 +126,6 @@ class Books implements Interfaces\RepositoryInterface
         }
 
         return $book_collection;
-    }
-
-    /**
-     * Load 'book' terms for the posts results.
-     *
-     * @internal these terms ar sorted DESC on id ()
-     * @param array $posts_result
-     * @return array
-     */
-    private function loadTerms( array $posts_result )
-    {
-        $posts_result = array_map(function($item){
-
-            $terms = wp_get_post_terms(
-                $item->ID,
-                'book',
-                [
-                    'orderby' => 'id',
-                    'order' => 'DESC'
-                ]
-            );
-
-            $item->book_terms = $terms;
-
-            return $item;
-
-        }, $posts_result);
-
-        return $posts_result;
     }
 
 }

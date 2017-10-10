@@ -8,7 +8,8 @@
  */
 
 global $posts,
-       $wp;
+       $wp,
+       $wt_msg;
 
 $this->returnTemplate('breadcrumb_template');
 
@@ -18,6 +19,8 @@ $this_book_url = home_url(add_query_arg([
     'action' => 'edit-chapter',
     'book' => $book_id
 ],$wp->request));
+
+$wt_msg->display();
 
 ?>
 

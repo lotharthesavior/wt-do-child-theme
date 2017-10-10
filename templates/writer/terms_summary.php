@@ -8,11 +8,14 @@
  */
 
 global $terms,
-       $wp;
+       $wp,
+       $wt_msg;
 
 $this_book_url = home_url(add_query_arg([
     'action' => 'edit-book'
 ],$wp->request));
+
+$wt_msg->display();
 
 ?>
 

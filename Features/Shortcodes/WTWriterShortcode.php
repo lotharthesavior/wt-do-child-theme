@@ -449,7 +449,7 @@ class WTWriterShortcode implements Interfaces\WTShortcodeInterface
             $chapter_id = sanitize_text_field($this->get_request['chapter']);
 
         $statement = [
-            'id' => $chapter_id,
+            'p' => $chapter_id,
             'post_type' => 'post',
             'posts_per_page' => '1',
             'author' => get_current_user_id(),
@@ -521,18 +521,21 @@ class WTWriterShortcode implements Interfaces\WTShortcodeInterface
                 $book_id = sanitize_text_field($this->get_request['book']);
 
                 // TODO: centralize the place to get terms
-                $book_object = get_terms([
-                    'id' => $book_id,
+                $statement = [
                     'taxonomy' => 'book',
+                    'term_id'  => $book_id,
+                    'order'    => 'ASC',
                     'hide_empty' => false,
-                    'user_id' => get_current_user_id(),
-                    'parent' => 0
-                ]);
+                    'parent'   => 0,
+                    'user_id'  => get_current_user_id()
+                ];
 
-                if( !reset($book_object) )
+                $terms = $this->executeSearchOnMainRepository($statement);
+
+                if( !$terms->valid() )
                     throw new \Exception("Book not found!");
 
-                $book_object = reset($book_object);
+                $book_object = $terms->current();
 
                 array_push($breadcrumb, [
                     'value' => 'Books',
@@ -600,6 +603,9 @@ class WTWriterShortcode implements Interfaces\WTShortcodeInterface
 
                     $terms = $this->executeSearchOnMainRepository($statement);
 
+                    if( !$terms->valid() )
+                        throw new \Exception("Book not found!");
+
                     $book_object = $terms->current();
 
                     $current_breadcrumb_item = [
@@ -616,15 +622,15 @@ class WTWriterShortcode implements Interfaces\WTShortcodeInterface
                 if( !$book_object )
                     throw new \Exception("Book not found!");
 
-                array_push($breadcrumb, [
-                    'value' => 'Books',
-                    'link' => $books_list_url
-                ]);
-
                 $chapters_list_url = home_url(add_query_arg([
                     'action' => 'search-chapters',
                     'book' => $book_object->term_id
                 ],$wp->request));
+
+                array_push($breadcrumb, [
+                    'value' => 'Books',
+                    'link' => $books_list_url
+                ]);
 
                 array_push($breadcrumb, [
                     'value' => $book_object->name . '\'s Chapters',
