@@ -278,6 +278,9 @@ class WTWriterShortcode implements Interfaces\WTShortcodeInterface
 
                 $book_id = sanitize_text_field($this->get_request['book']);
 
+                if( !$book_id )
+                    throw new \Exception("Problem on deleting the book: missing book id!");
+
                 $term_result = wp_delete_term(
                     $book_id,
                     'book',
@@ -286,8 +289,8 @@ class WTWriterShortcode implements Interfaces\WTShortcodeInterface
                     ]
                 );
 
-                if( !$book_id )
-                    throw new \Exception("Problem on deleting the book.");
+                if( $term_result !== true )
+                    throw new \Exception("Problem on deleting the book: process failed!");
 
                 $redirect_location = home_url(add_query_arg([], $wp->request));
 
@@ -298,17 +301,6 @@ class WTWriterShortcode implements Interfaces\WTShortcodeInterface
             case "delete-chapter":
 
                 $chapter_id = sanitize_text_field($this->get_request['chapter']);
-
-
-                // TODO: load the post record
-                // $chapter_id
-//                $term_result = wp_delete_term(
-//                    $term_id,
-//                    'book',
-//                    [
-//                        'author' => get_current_user_id(),
-//                    ]
-//                );
 
                 $result = wp_delete_post($chapter_id);
 
@@ -479,7 +471,6 @@ class WTWriterShortcode implements Interfaces\WTShortcodeInterface
             'parent'   => 0,
             'user_id'  => get_current_user_id()
         ];
-//        echo "<pre>";var_dump($statement);exit;
 
         return $this->executeSearchOnMainRepository($statement);
     }

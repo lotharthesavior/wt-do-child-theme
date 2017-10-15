@@ -47,4 +47,5 @@ while ($terms->valid())
 }
 
 ?>
+
 </div>

@@ -22,7 +22,6 @@ class WTThemeShortcodes
         add_shortcode('wt-writer', function () {
             $wt_writer_shortcode = new Shortcodes\WTWriterShortcode();
             $wt_writer_shortcode->run();
-
         });
     }
 

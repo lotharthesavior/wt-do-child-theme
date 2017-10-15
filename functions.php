@@ -23,7 +23,7 @@ require $wt_theme_dir . 'WTThemePlugin.php';
 require $wt_theme_dir . 'vendor/autoload.php';
 
 \WTThemePlugin::handleRegistration();
-\WTThemePlugin::addFilters();
-\WTThemePlugin::addActions();
+\Features\WTThemeFilters::start();
+\Features\WTThemeActions::start();
 
 \Features\WTThemeShortcodes::addWriterShortcode();
