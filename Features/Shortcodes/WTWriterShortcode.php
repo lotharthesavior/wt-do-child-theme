@@ -170,10 +170,18 @@ class WTWriterShortcode implements Interfaces\WTShortcodeInterface
      */
     public function returnTemplate(string $template)
     {
-        global $wt_theme_dir;
+        global $wt_theme_dir,
+               $chapter,
+               $wp,
+               $wt_msg,
+               $terms,
+               $posts,
+               $book;
 
         if (!isset($this->{$template}))
             throw new \Exception("Invalid template.");
+
+//        $this->prepareTemplateData(); // TODO: prepare data for the template
 
         require $wt_theme_dir . $this->{$template};
     }

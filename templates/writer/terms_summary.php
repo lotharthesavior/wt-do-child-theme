@@ -7,10 +7,6 @@
  * @internal This file is to always run inside the WTWriterShortcode context
  */
 
-global $terms,
-       $wp,
-       $wt_msg;
-
 $this_book_url = home_url(add_query_arg([
     'action' => 'edit-book'
 ],$wp->request));

@@ -5,10 +5,6 @@
  * @author Savio Resende <savio@savioresende.com.br>
  */
 
-global $book,
-       $wp,
-       $wt_msg;
-
 $this->returnTemplate('breadcrumb_template');
 
 //if( substr($wp->request, -1) != '/' )

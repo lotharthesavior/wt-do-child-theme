@@ -7,10 +7,6 @@
  * @internal This file is to always run inside the WTWriterShortcode context
  */
 
-global $posts,
-       $wp,
-       $wt_msg;
-
 $this->returnTemplate('breadcrumb_template');
 
 $book_id = sanitize_text_field($this->get_request['book']);

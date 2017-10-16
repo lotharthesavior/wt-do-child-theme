@@ -5,10 +5,6 @@
  * @author Savio Resende <savio@savioresende.com.br>
  */
 
-global $chapter,
-       $wp,
-       $wt_msg;
-
 $this->returnTemplate('breadcrumb_template');
 
 $this_chapter_url = home_url(add_query_arg([
