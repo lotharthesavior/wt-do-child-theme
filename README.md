@@ -110,6 +110,8 @@ TODO: doc private methods and organize them
 
 #### Shortcode Writer
 
+Shortcode: [wt-writer]
+
 This shortcode allows the non-administrator user to create posts on the front end in the Woocommerce MyAdmin page.
 
 The tree is:
