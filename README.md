@@ -63,7 +63,22 @@ public static $menu_items_to_be_registered = [
 These items will be available in the Theme's menu on the WP-Admin. Any menu can the attached to this location (e.g. the default menu, which is used by the theme to increment the Woocommerce My Account menu items, is "Words Tree My Account Menu").
 
 
-#### Shortcodes
+#### Globals
+
+**$wt_theme_dir** theme directory for files inclusion.
+
+**$terms** terms loaded
+
+**$posts** posts loaded
+
+**$breadcrumb** breadcrumb loaded
+
+**$chapter** chapter loaded
+
+**$book** book loaded
+
+
+#### Shortcodes (Interface and Workflow)
 
 ##### Class Interface:
 
@@ -84,25 +99,23 @@ These items will be available in the Theme's menu on the WP-Admin. Any menu can 
 **Body** JSON {field1:value1,field2:value2}
 
 
-#### Globals
-
-**$wt_theme_dir** theme directory for files inclusion.
-
-**$terms** terms loaded
-
-**$posts** posts loaded
-
-**$breadcrumb** breadcrumb loaded
-
-**$chapter** chapter loaded
-
-**$book** book loaded
-
-
-#### Workflow
+##### Workflow
 
 1. Shortcode::run
 2. Shortcode::doAction
 3. Shortcode::returnTemplate
 
-TODO: doc private methods and organize them 
+TODO: doc private methods and organize them
+
+
+#### Shortcode Writer
+
+This shortcode allows the non-administrator user to create posts on the front end in the Woocommerce MyAdmin page.
+
+The tree is:
+
+1. Book (Parent Taxonomy)
+
+2. Chapter (Sub Taxonomy)
+
+TODO: evolve this to be recursive in the further levels. 

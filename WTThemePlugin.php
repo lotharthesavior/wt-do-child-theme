@@ -88,4 +88,18 @@ class WTThemePlugin
         return $menu_links;
     }
 
+    /**
+     * Retrieve the ocean WT version
+     *
+     * @internal Dynamically get version number of the
+     *           parent stylesheet (lets browsers re-cache
+     *           your stylesheet when you update your theme)
+     * @return false|string
+     */
+    public static function getOceanWPVersion()
+    {
+        $theme = wp_get_theme('OceanWP');
+        return $theme->get('Version');
+    }
+
 }

@@ -1,6 +1,31 @@
 /*
-CSS to style the MyAccount page menu
+CSS to style the MyAccount Writer page menu
 
 @author Savio Resende <savio@savioresende.com.br>
 */
 
+.woocommerce-MyAccount-tabs {
+    width: 4% !important;
+}
+
+.woocommerce-MyAccount-navigation-link,
+.woocommerce-MyAccount-navigation-link a {
+    height: 52px !important;
+    color: white !important;
+}
+
+.woocommerce-MyAccount-navigation-link a::before {
+    display: block !important;
+    position: absolute !important;
+    margin-left: 0px !important;
+    width: 100% !important;
+    text-align: center !important;
+}
+
+.woocommerce-MyAccount-tabs .oceanwp-user-profile .user-info {
+    display: none !important;
+}
+
+.woocommerce-MyAccount-content {
+    width: calc( 100% - 97px) !important;
+}

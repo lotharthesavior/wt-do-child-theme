@@ -220,6 +220,11 @@ class WTWriterShortcode implements Interfaces\WTShortcodeInterface
 
             case "edit-chapter":
 
+                $version = \WTThemePlugin::getOceanWPVersion();
+
+                // menu style (for the blogger oceanwp demo)
+                wp_enqueue_style('child-style2', get_stylesheet_directory_uri() . '/style-blogger-myaccount.css', array('oceanwp-style'), $version);
+
                 $this->editChapter();
 
                 break;
