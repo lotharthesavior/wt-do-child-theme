@@ -102,7 +102,7 @@ div.mce-toolbar-grp,
 .wt-writer-input-container,
 .wt-writer-input{
     width: 100%;
-    min-width:500px;
+    /*min-width:500px;*/
     color: #000;
 }
 

@@ -29,3 +29,14 @@ CSS to style the MyAccount Writer page menu
 .woocommerce-MyAccount-content {
     width: calc( 100% - 97px) !important;
 }
+
+
+@media only screen and (max-width:49.75em) {
+    .woocommerce-MyAccount-tabs {
+        display: none !important;
+    }
+
+    .woocommerce-MyAccount-content {
+        width: 100% !important;
+    }
+}
