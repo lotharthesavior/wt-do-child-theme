@@ -43,20 +43,10 @@ if ( 'quote' == get_post_format() ) {
 		<?php } ?>
 
         <?php if ( 'books' == $section ) { ?>
-            <li class="meta-my-meta"><span class="dashicons dashicons-book icon-term-post-single"></span><?php
-                $books= get_terms( array(
-                    'taxonomy' => 'book',
-                    'hide_empty' => false,
-                ) );
-                for ($i = count($books); $i > 0; $i-- ){
-                    $url = get_term_link($books[$i - 1]);
-                    if( $i == count($books) - 1 )
-                        echo " > ";
-                    if( $i != 1 )
-                        echo "<a href='" . $url . "'>" . $books[$i - 1]->name . "</a>";
-                    else
-                        echo $books[$i - 1]->name;
-                }
+            <li class="meta-book"><span class="dashicons dashicons-book icon-term-post-single"></span><?php
+
+                \Helpers\WtHelpers::showPostBooksTaxonomiesHierarchical( get_the_ID() );
+
                 ?></li>
         <?php } ?>
 
