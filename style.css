@@ -28,6 +28,10 @@ Version: beta
     margin: 0 auto;
 }
 
+#main #content-wrap {
+    padding-top: 30px !important;
+}
+
 /* --- Blog Single --- */
 
 .icon-term-post-single {
