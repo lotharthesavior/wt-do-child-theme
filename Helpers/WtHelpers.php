@@ -28,7 +28,7 @@ class WtHelpers
      * @param int $post_id
      * @param \WP_Term|0 $parent
      */
-    public static function showPostBooksTaxonomiesHierarchical( int $post_id, $parent = 0 )
+    public static function showPostBooksTaxonomiesHierarchical( $parent = 0 )
     {
         if( is_int($parent) ) {
 
@@ -45,7 +45,7 @@ class WtHelpers
 
             echo "<a href='" . $url . "'>" . $book_parent->name . "</a> > ";
 
-            self::showPostBooksTaxonomiesHierarchical($post_id, $book_parent);
+            self::showPostBooksTaxonomiesHierarchical($book_parent);
 
         } else {
 
@@ -55,7 +55,7 @@ class WtHelpers
             $url = "";
 
             $book_children = wp_get_post_terms(
-                $post_id,
+                get_the_ID(),
                 'book',
                 [
                     'parent' => $parent->term_id
@@ -64,7 +64,7 @@ class WtHelpers
             $book_children = reset($book_children);
 
             $book_children_children = wp_get_post_terms(
-                $post_id,
+                get_the_ID(),
                 'book',
                 [
                     'parent' => $book_children->term_id
@@ -90,11 +90,36 @@ class WtHelpers
 
             if ($next) {
 
-                self::showPostBooksTaxonomiesHierarchical($post_id, $book_children);
+                self::showPostBooksTaxonomiesHierarchical($book_children);
 
             }
 
         }
+    }
+
+    /**
+     * Show only the book taxonomy link
+     *
+     * @param int $post_id
+     */
+    public static function showBookTaxonomyForPost()
+    {
+        $book_parent = wp_get_post_terms(
+            get_the_ID(),
+            'book',
+            [
+                'parent' => 0
+            ]
+        );
+
+        if( empty($book_parent) )
+            return;
+
+        $book_parent = reset($book_parent);
+
+        $url = get_term_link($book_parent->term_id);
+
+        echo "<a href='" . $url . "'>" . $book_parent->name . "</a>";
     }
 
 }
