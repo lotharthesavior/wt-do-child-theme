@@ -23,6 +23,11 @@ class WTThemeShortcodes
             $wt_writer_shortcode = new Shortcodes\WTWriterShortcode();
             $wt_writer_shortcode->run();
         });
+
+         add_shortcode('wt-notesama', function () {
+             $wt_notesama_shortcode = new Shortcodes\WTNotesamaShortcode();
+             $wt_notesama_shortcode->run();
+         });
     }
 
 }
