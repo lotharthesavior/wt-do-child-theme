@@ -21,6 +21,13 @@ if( !in_array("administrator", $current_user->roles) ) {
     show_admin_bar(false);
 }
 
+function wt_tinymce_settings( $settings ) {
+    $settings['paste_data_images'] = true;
+
+    return $settings;
+}
+add_filter( 'tiny_mce_before_init', 'wt_tinymce_settings' );
+
 $wt_theme_dir = plugin_dir_path( __FILE__ );
 
 require $wt_theme_dir . 'WTThemePlugin.php';
