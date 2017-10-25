@@ -358,40 +358,18 @@ class WTNotesamaShortcode implements Interfaces\WTShortcodeInterface
 
             case 'search-notes':
 
-                $books_list_url = home_url(add_query_arg([],$wp->request));
-
-                $book_id = sanitize_text_field($this->get_request['book']);
-
-                // TODO: centralize the place to get terms
-                $statement = [
-                    'taxonomy' => 'book',
-                    'term_id'  => $book_id,
-                    'order'    => 'ASC',
-                    'hide_empty' => false,
-                    'parent'   => 0,
-                    'user_id'  => get_current_user_id()
-                ];
-
-                $terms = $this->executeSearchOnMainRepository($statement);
-
-                if( !$terms->valid() )
-                    throw new \Exception("Book not found!");
-
-                $book_object = $terms->current();
+                $notes_list_url = home_url(add_query_arg([],$wp->request));
 
                 array_push($breadcrumb, [
-                    'value' => 'Books',
-                    'link' => $books_list_url
-                ]);
-
-                array_push($breadcrumb, [
-                    'value' => $book_object->name . '\'s Chapters',
-                    'link' => ''
+                    'value' => 'Notes',
+                    'link' => $notes_list_url
                 ]);
 
                 break;
 
             case 'edit-note':
+
+                $notes_list_url = home_url(add_query_arg([],$wp->request));
 
                 if( isset($this->get_request['notesama']) ) {
 
@@ -413,7 +391,7 @@ class WTNotesamaShortcode implements Interfaces\WTShortcodeInterface
 
                 array_push($breadcrumb, [
                     'value' => 'Notes',
-                    'link' => '/notesama/'
+                    'link' => $notes_list_url
                 ]);
 
                 array_push($breadcrumb, $current_breadcrumb_item);

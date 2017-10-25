@@ -524,7 +524,7 @@ class WTWriterShortcode implements Interfaces\WTShortcodeInterface
 
                 $book_id = sanitize_text_field($this->get_request['book']);
 
-                // TODO: centralize the place to get terms
+                // TODO: centralize the place for get terms
                 $statement = [
                     'taxonomy' => 'book',
                     'term_id'  => $book_id,

@@ -79,7 +79,9 @@ class WTThemePlugin
      */
     public static function addMenuItemToMyAccount(WP_Post $menu_item, array $menu_links)
     {
-        $extra_page = [\Helpers\WtHelpers::slugFromString($menu_item->title) => $menu_item->title];
+        $extra_page = [
+            \Helpers\WtHelpers::slugFromString($menu_item->title) => $menu_item->title
+        ];
 
         $key = array_keys($extra_page)[0];
 

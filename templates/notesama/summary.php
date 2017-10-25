@@ -11,7 +11,7 @@ $this->returnTemplate('breadcrumb_template');
 
 $wt_msg->display();
 
-$this_book_url = home_url(add_query_arg([
+$this_note_url = home_url(add_query_arg([
     'action' => 'edit-note'
 ],$wp->request));
 
@@ -20,7 +20,7 @@ $this_book_url = home_url(add_query_arg([
 <div class="wt-shortcode-header">
     <h2>Notes</h2>
 
-    <a class="wt-header-shortcode-btn button" href="<?php echo $this_book_url; ?>">New Note</a>
+    <a class="wt-header-shortcode-btn button" href="<?php echo $this_note_url; ?>">New Note</a>
 
     <div class="cleaner"></div>
 </div>
