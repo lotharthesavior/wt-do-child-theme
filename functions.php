@@ -16,6 +16,11 @@
 
 if (!session_id()) @session_start();
 
+$current_user = wp_get_current_user();
+if( !in_array("administrator", $current_user->roles) ) {
+    show_admin_bar(false);
+}
+
 $wt_theme_dir = plugin_dir_path( __FILE__ );
 
 require $wt_theme_dir . 'WTThemePlugin.php';
