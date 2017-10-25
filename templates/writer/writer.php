@@ -59,7 +59,12 @@ $wt_msg->display();
 
     <?php
 
-    wp_editor( $post_content, "wt-editor-content");
+    $settings = [
+        'drag_drop_upload' => false,
+        'media_buttons' => false
+    ];
+
+    wp_editor( $post_content, "wt-editor-content", $settings);
 
     ?>
 
