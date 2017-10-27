@@ -41,6 +41,25 @@ class WTThemePlugin
     }
 
     /**
+     * Start theme
+     */
+    public static function start()
+    {
+        self::restrictAdminBarAccess();
+    }
+
+    /**
+     * Make restrict the access to Admin Top Bar
+     */
+    public static function restrictAdminBarAccess()
+    {
+        $current_user = wp_get_current_user();
+        if( !in_array("administrator", $current_user->roles) ) {
+            show_admin_bar(false);
+        }
+    }
+
+    /**
      *
      */
     public static function handleRegistration()

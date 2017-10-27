@@ -23,6 +23,20 @@ class WTThemeFilters
     {
         add_filter('ocean_blog_meta_choices', ['\\Features\\WTThemeFilters', 'addBooksMeta']);
         add_filter('woocommerce_account_menu_items', ['\\Features\\WTThemeFilters', 'wtDoRemoveMyAccountLinks']);
+        add_filter('wp_editor_settings', ['\\Features\\WTThemeFilters', 'wt_tinymce_settings']);
+    }
+
+    /**
+     * Customize TinyMCE for WT
+     *
+     * @param array $settings
+     * @return array
+     */
+    public static function wt_tinymce_settings( $settings ) {
+        $settings['paste_data_images'] = true;
+        $settings['paste_remove_styles'] = true;
+        $settings['quicktags'] = false;
+        return $settings;
     }
 
     /**

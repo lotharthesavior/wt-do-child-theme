@@ -16,18 +16,6 @@
 
 if (!session_id()) @session_start();
 
-$current_user = wp_get_current_user();
-if( !in_array("administrator", $current_user->roles) ) {
-    show_admin_bar(false);
-}
-
-function wt_tinymce_settings( $settings ) {
-    $settings['paste_data_images'] = true;
-
-    return $settings;
-}
-add_filter( 'tiny_mce_before_init', 'wt_tinymce_settings' );
-
 $wt_theme_dir = plugin_dir_path( __FILE__ );
 
 require $wt_theme_dir . 'WTThemePlugin.php';
@@ -35,6 +23,7 @@ require $wt_theme_dir . 'WTThemePlugin.php';
 require $wt_theme_dir . 'vendor/autoload.php';
 
 \WTThemePlugin::handleRegistration();
+\WTThemePlugin::start();
 \Features\WTThemeFilters::start();
 \Features\WTThemeActions::start();
 

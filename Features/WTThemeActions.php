@@ -26,7 +26,20 @@ class WTThemeActions
 
         add_action('init', ['\\Features\\WTThemeActions', 'addWtMenuForExtraLinksEndpoint']);
 
+        add_action('init', ['\\Features\\WTThemeActions', 'blockusers_init'] );
+
         self::registerWtActions();
+    }
+
+    /**
+     * Block access to wp-admin without administrator user_type
+     */
+    public static function blockusers_init() {
+        if ( is_admin() && ! current_user_can( 'administrator' ) &&
+            ! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
+            wp_redirect( home_url() );
+            exit;
+        }
     }
 
     /**
